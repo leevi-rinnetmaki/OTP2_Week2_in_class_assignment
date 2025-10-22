@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/ADirin/Otp2_Week1_inclass_Solution.git'
+                git 'https://github.com/ADirin/OTP2_InclassWithJenkins_Week1.git'
             }
         }
         stage('Run Tests') {
