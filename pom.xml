@@ -12,7 +12,9 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <javafx.version>17.0.12</javafx.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -21,13 +23,21 @@
             <scope>test</scope>
         </dependency>
 
-
-
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
     </dependencies>
+
     <build>
         <finalName>test</finalName>
         <plugins>
-            <!-- JaCoCo plugin for code coverage -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -38,7 +48,6 @@
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
-                    <!-- Generate code coverage report after tests run -->
                     <execution>
                         <id>report</id>
                         <phase>test</phase>
@@ -49,7 +58,6 @@
                 </executions>
             </plugin>
 
-            <!-- JUnit to run the tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -61,8 +69,6 @@
                 </configuration>
             </plugin>
 
-
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -70,17 +76,20 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <!-- Specify the fully qualified Main class -->
                             <mainClass>org.example.ShoppingCart</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
             </plugin>
 
-
-
-
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.8</version>
+                <configuration>
+                    <mainClass>org.example.ShoppingCartApp</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
-
 </project>
