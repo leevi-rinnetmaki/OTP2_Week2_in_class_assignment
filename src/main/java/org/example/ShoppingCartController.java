@@ -33,13 +33,10 @@ public class ShoppingCartController {
         currentLocale = Locale.ENGLISH;
         bundle = ResourceBundle.getBundle("MessagesBundle", currentLocale);
 
-        // Initialize prompts
         updatePrompts();
 
-        // Add first item row
         handleAddItem();
 
-        // Language switch
         languageChoice.setOnAction(e -> {
             switch (languageChoice.getValue()) {
                 case "Finnish" -> currentLocale = new Locale("fi", "FI");
@@ -49,28 +46,23 @@ public class ShoppingCartController {
             }
             bundle = ResourceBundle.getBundle("MessagesBundle", currentLocale);
             updatePrompts();
-            handleCalculate(); // update total in new language
+            handleCalculate();
         });
 
-        // Add item button
         addItemButton.setOnAction(e -> handleAddItem());
 
-        // Calculate button
         calculateButton.setOnAction(e -> handleCalculate());
     }
 
     private void updatePrompts() {
-        // Update title
         titleText.setText(bundle.containsKey("title") ? bundle.getString("title") : "Shopping Cart");
 
-        // Update item prompts
         for (int i = 0; i < itemRows.size(); i++) {
             ItemRow row = itemRows.get(i);
             row.priceField.setPromptText(bundle.getString("prompt.price") + " " + (i + 1));
             row.quantityField.setPromptText(bundle.getString("prompt.quantity") + " " + (i + 1));
         }
 
-        // Update outputArea prompt text
         outputArea.setPromptText(bundle.containsKey("prompt.result") ? bundle.getString("prompt.result") : "Result will appear here");
     }
 
@@ -105,7 +97,6 @@ public class ShoppingCartController {
             }
         }
 
-        // Always use $ for currency
         outputArea.setText(bundle.getString("total") + " " + String.format("$%.2f", totalCost));
     }
 
