@@ -15,7 +15,7 @@ public class ShoppingCartApp extends Application {
 
         Scene scene = new Scene(loader.load(), 400, 300);
         stage.setScene(scene);
-        stage.setTitle("Shopping Cart");
+        stage.setTitle("Leevi Rinnetmäki");
         stage.show();
     }
 

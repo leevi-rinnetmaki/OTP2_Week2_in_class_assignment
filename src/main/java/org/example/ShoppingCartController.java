@@ -34,7 +34,6 @@ public class ShoppingCartController {
         bundle = ResourceBundle.getBundle("MessagesBundle", currentLocale);
 
         updatePrompts();
-
         handleAddItem();
 
         languageChoice.setOnAction(e -> {

@@ -6,13 +6,13 @@ pipeline {
     environment {
         PATH = "C:\\Program Files\\Docker\\Docker\\resources\\bin;${env.PATH}"
         DOCKERHUB_CREDENTIALS_ID = 'Docker_Hub'
-        DOCKERHUB_REPO = 'amirdirin/otp2_vk1_inclass_jenkins'
+        DOCKERHUB_REPO = 'leevijr/shoppingcart'
         DOCKER_IMAGE_TAG = 'latest'
     }
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/ADirin/OTP2_InclassWithJenkins_Week1.git'
+                git 'https://github.com/leevi-rinnetmaki/OTP2_Week2_in_class_assignment.git'
             }
         }
         stage('Run Tests') {
