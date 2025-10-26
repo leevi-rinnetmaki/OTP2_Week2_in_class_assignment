@@ -6,7 +6,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -27,12 +26,20 @@ public class ShoppingCartController {
 
     @FXML
     public void initialize() {
+        // Setup languages
         languageChoice.getItems().addAll("English", "Finnish", "Swedish", "Japanese");
         languageChoice.setValue("English");
 
         currentLocale = Locale.ENGLISH;
         bundle = ResourceBundle.getBundle("MessagesBundle", currentLocale);
 
+        // Initialize prompts
+        updatePrompts();
+
+        // Add first item row
+        handleAddItem();
+
+        // Language switch
         languageChoice.setOnAction(e -> {
             switch (languageChoice.getValue()) {
                 case "Finnish" -> currentLocale = new Locale("fi", "FI");
@@ -42,18 +49,29 @@ public class ShoppingCartController {
             }
             bundle = ResourceBundle.getBundle("MessagesBundle", currentLocale);
             updatePrompts();
+            handleCalculate(); // update total in new language
         });
 
-        handleAddItem();
+        // Add item button
+        addItemButton.setOnAction(e -> handleAddItem());
+
+        // Calculate button
+        calculateButton.setOnAction(e -> handleCalculate());
     }
 
     private void updatePrompts() {
-        titleText.setText(bundle.getString("title") != null ? bundle.getString("title") : "Shopping Cart");
+        // Update title
+        titleText.setText(bundle.containsKey("title") ? bundle.getString("title") : "Shopping Cart");
+
+        // Update item prompts
         for (int i = 0; i < itemRows.size(); i++) {
             ItemRow row = itemRows.get(i);
             row.priceField.setPromptText(bundle.getString("prompt.price") + " " + (i + 1));
             row.quantityField.setPromptText(bundle.getString("prompt.quantity") + " " + (i + 1));
         }
+
+        // Update outputArea prompt text
+        outputArea.setPromptText(bundle.containsKey("prompt.result") ? bundle.getString("prompt.result") : "Result will appear here");
     }
 
     @FXML
@@ -82,14 +100,14 @@ public class ShoppingCartController {
                 int quantity = Integer.parseInt(row.quantityField.getText());
                 totalCost += price * quantity;
             } catch (NumberFormatException e) {
-                outputArea.setText("Invalid input in one of the items.");
+                outputArea.setText(bundle.containsKey("invalid.input") ? bundle.getString("invalid.input") : "Invalid input in one of the items.");
                 return;
             }
         }
 
+        // Always use $ for currency
         outputArea.setText(bundle.getString("total") + " " + String.format("$%.2f", totalCost));
     }
-
 
     private static class ItemRow {
         TextField priceField;

@@ -19,5 +19,5 @@
     <Button fx:id="addItemButton" text="Add Item" onAction="#handleAddItem"/>
     <Button fx:id="calculateButton" text="Calculate" onAction="#handleCalculate" />
 
-    <TextArea fx:id="outputArea" promptText="Result will appear here" prefRowCount="5" />
+    <TextArea fx:id="outputArea" prefRowCount="5" />
 </VBox>
