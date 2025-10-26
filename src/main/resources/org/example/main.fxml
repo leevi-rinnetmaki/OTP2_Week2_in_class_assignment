@@ -2,10 +2,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.ShoppingCartController"
-      spacing="10" alignment="CENTER" padding="20">
+      spacing="10" alignment="CENTER">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
     <Text fx:id="titleText" text="Shopping Cart" style="-fx-font-size: 20;" />
     <ChoiceBox fx:id="languageChoice" />
     <TextField fx:id="itemCountField" promptText="Enter number of items" />

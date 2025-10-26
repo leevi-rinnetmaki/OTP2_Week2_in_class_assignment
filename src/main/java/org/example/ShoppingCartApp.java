@@ -9,20 +9,18 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ShoppingCartApp extends Application {
-
     @Override
     public void start(Stage stage) throws Exception {
-        Locale defaultLocale = new Locale("en", "US");
-        ResourceBundle bundle = ResourceBundle.getBundle("MessagesBundle", defaultLocale);
+        ResourceBundle bundle = ResourceBundle.getBundle("MessagesBundle", Locale.ENGLISH);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/main.fxml"), bundle);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main.fxml"), bundle);
-        Scene scene = new Scene(loader.load());
-        stage.setTitle(bundle.getString("app.title"));
+        Scene scene = new Scene(loader.load(), 400, 300);
         stage.setScene(scene);
+        stage.setTitle("Shopping Cart");
         stage.show();
     }
 
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
 }
