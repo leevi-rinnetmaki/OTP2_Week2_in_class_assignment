@@ -13,7 +13,11 @@
 
     <Text fx:id="titleText" text="Shopping Cart" style="-fx-font-size: 20;" />
     <ChoiceBox fx:id="languageChoice" />
-    <TextField fx:id="itemCountField" promptText="Enter number of items" />
+
+    <VBox fx:id="itemsContainer" spacing="5" />
+
+    <Button fx:id="addItemButton" text="Add Item" onAction="#handleAddItem"/>
     <Button fx:id="calculateButton" text="Calculate" onAction="#handleCalculate" />
+
     <TextArea fx:id="outputArea" promptText="Result will appear here" prefRowCount="5" />
 </VBox>
