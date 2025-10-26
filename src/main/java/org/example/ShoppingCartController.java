@@ -92,8 +92,10 @@ public class ShoppingCartController {
                 int quantity = Integer.parseInt(row.quantityField.getText());
                 totalCost += price * quantity;
             } catch (NumberFormatException e) {
+                /*
                 outputArea.setText(bundle.containsKey("invalid.input") ? bundle.getString("invalid.input") : "Invalid input in one of the items.");
                 return;
+                 */
             }
         }
 
