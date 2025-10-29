@@ -55,6 +55,8 @@ public class ShoppingCartController {
 
     private void updatePrompts() {
         titleText.setText(bundle.containsKey("title") ? bundle.getString("title") : "Shopping Cart");
+        addItemButton.setText(bundle.containsKey("button.generate") ? bundle.getString("button.generate") : "Add Item");
+        calculateButton.setText(bundle.containsKey("button.calculate") ? bundle.getString("button.calculate") : "Calculate");
 
         for (int i = 0; i < itemRows.size(); i++) {
             ItemRow row = itemRows.get(i);
